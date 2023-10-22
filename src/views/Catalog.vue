@@ -4,6 +4,7 @@
         class="product" 
         v-for="product in store.products" 
         :key="product.id"
+        @click="goToProductPage(product.id)"
     >
       <img :src="product.thumbnail" alt="img" />
       <h2>Brand: {{ product.brand }}</h2>
@@ -24,13 +25,17 @@ export default defineComponent({
 <script setup>
 import { onMounted } from 'vue'
 import { productsStore } from '@/stores/products'
+import { useRouter } from 'vue-router'
 
-const store = productsStore()
+const store = productsStore();
+const router = useRouter();
+
+const goToProductPage = (id) => {
+    router.push({ name: 'ProductView', params: {id}})
+}
 
 onMounted(async () => {
     await store.fetchProductsFromDB();
-
-    console.log('MOUNTED!!!!!!!!!!!', store.products);
 })
 </script>
 
