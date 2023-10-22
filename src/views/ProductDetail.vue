@@ -1,4 +1,5 @@
 <template>
+    <button @click="router.push({name: 'Catalog'})">Back to catalog</button>
     <div class="product">
         <div class="product-image">
             <img :src="selectedProduct.thumbnail" alt="img" />
@@ -22,10 +23,11 @@ export default defineComponent({
 <script setup>
 import {computed} from 'vue';
 import { productsStore } from '@/stores/products.js';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const store = productsStore();
 const route = useRoute();
+const router = useRouter();
 
 const selectedProduct = computed(() => {
     return store.products.find((item) => item.id === Number(route.params.id));
