@@ -34,4 +34,22 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.products-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product {
+    flex-basis: 28%;
+    margin: 8px;
+    padding: 16px;
+    box-shadow: 0 0 14px 1px #e6e6e6;
+    cursor: pointer;
+}
+
+.product img {
+    width: 70%;
+}
+</style>
