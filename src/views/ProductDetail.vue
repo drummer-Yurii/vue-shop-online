@@ -8,6 +8,7 @@
             <p>Brand: {{ selectedProduct.brand }}</p>
             <p>Description: {{ selectedProduct.description }}</p>
             <h2>Price: {{ selectedProduct.price }}</h2>
+            <button @click="addToCart">Add to cart</button>
         </div>
     </div>
 </template>
@@ -32,6 +33,11 @@ const router = useRouter();
 const selectedProduct = computed(() => {
     return store.products.find((item) => item.id === Number(route.params.id));
 })
+
+const addToCart = () => {
+    store.addToCart(selectedProduct.value)
+    router.push({name: 'CartView'})
+}
 </script>
 
 <style scoped>
